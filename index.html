@@ -234,8 +234,8 @@
     <div class="center-container">
         <h1>欢迎访问小瑞的网站</h1>
         <div class="buttons-container">
-            <button class="btn btn-primary">按钮1</button>
-            <button class="btn btn-secondary">按钮2按钮</button>
+            <button class="btn btn-primary" id="btn1">小瑞的bilibili</button>
+            <button class="btn btn-secondary" id="btn2">黑历史</button>
         </div>
     </div>
 
@@ -245,6 +245,8 @@
         const menuContent = document.getElementById('menuContent');
         const aboutBtn = document.getElementById('aboutBtn');
         const qqInfo = document.getElementById('qqInfo');
+        const btn1 = document.getElementById('btn1');
+        const btn2 = document.getElementById('btn2');
 
         // 菜单按钮点击事件
         menuBtn.addEventListener('click', function() {
@@ -254,6 +256,16 @@
         // 关于我们按钮点击事件
         aboutBtn.addEventListener('click', function() {
             qqInfo.classList.toggle('active');
+        });
+
+        // 按钮1点击事件 - 跳转到B站空间
+        btn1.addEventListener('click', function() {
+            window.open('https://space.bilibili.com/2082323781', '_blank');
+        });
+
+        // 按钮2点击事件 - 弹出文本"114514"
+        btn2.addEventListener('click', function() {
+            alert('114514');
         });
 
         // 点击页面其他地方关闭菜单
