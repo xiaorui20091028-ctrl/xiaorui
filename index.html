@@ -374,7 +374,7 @@
 	<div class="image-modal" id="imageModal">
 		<button class="close-btn" id="closeImage">&times;</button>
 		<div class="image-content">
-			<img src="images/image2.png" alt="展示二维码">
+			<img id="dynamicImage" src="" alt="展示图片">
 		</div>
 	</div>
 	
@@ -400,10 +400,18 @@
 		const btn3 = document.getElementById('btn3');
 		const btn4 = document.getElementById('btn4');
 		const imageModal = document.getElementById('imageModal');
+		const dynamicImage = document.getElementById('dynamicImage');
 		const closeImage = document.getElementById('closeImage');
 		const videoContainer = document.getElementById('videoContainer');
 		const videoPlayer = document.getElementById('videoPlayer');
 		const closeVideo = document.getElementById('closeVideo');
+
+		// 设备检测函数
+		function detectDevice() {
+			const userAgent = navigator.userAgent.toLowerCase();
+			const isMobile = /mobile|android|iphone|ipad|phone/i.test(userAgent);
+			return isMobile ? 'mobile' : 'desktop';
+		}
 
 		// 菜单按钮点击事件
 		menuBtn.addEventListener('click', function() {
@@ -424,8 +432,18 @@
 			qqInfo.classList.remove('active');
 		});
 
-		// 按钮1点击事件 - 显示图片
+		// 按钮1点击事件 - 显示图片（根据设备类型显示不同图片）
 		btn1.addEventListener('click', function() {
+			const deviceType = detectDevice();
+			
+			if (deviceType === 'desktop') {
+				// 电脑版显示 image3.jpg
+				dynamicImage.src = 'images/image3.jpg';
+			} else {
+				// 手机版显示 image2.png
+				dynamicImage.src = 'images/image2.png';
+			}
+			
 			imageModal.classList.add('active');
 		});
 
@@ -481,6 +499,12 @@
 				qqInfo.classList.remove('active');
 				emailInfo.classList.remove('active');
 			}
+		});
+
+		// 页面加载时检测设备类型
+		window.addEventListener('load', function() {
+			const deviceType = detectDevice();
+			console.log('检测到设备类型:', deviceType);
 		});
 	</script>
 </body>
